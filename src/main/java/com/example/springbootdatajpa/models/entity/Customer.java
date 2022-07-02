@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,6 +47,12 @@ public class Customer implements Serializable {
     private Date createdAt;
 
     private static final long serialVersionUID = 1L;
+
+    @PrePersist
+    // este metodo se ejecuta antes de que se guarde en la bd
+    public void prePersist() {
+        createdAt = new Date();
+    }
 
     /**
      * @return Long return the id

@@ -20,9 +20,18 @@ public class CustomerDaoImplement implements ICustomerDao {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(readOnly = true)
+
+    // Lista todos los clientes
     public List<Customer> all() {
         // Se debe poner "Customer", asi como se llama la clase
         return em.createQuery("from Customer").getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void save(Customer customer) {
+        // Toma el objeto Customer y lo guarda en la tabla
+        em.persist(customer);
     }
 
 }
