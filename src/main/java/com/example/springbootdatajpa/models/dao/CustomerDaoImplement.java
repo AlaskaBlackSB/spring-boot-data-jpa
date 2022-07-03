@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.springbootdatajpa.models.entity.Customer;
 
@@ -19,8 +18,6 @@ public class CustomerDaoImplement implements ICustomerDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    @Transactional(readOnly = true)
-
     // Lista todos los clientes
     public List<Customer> all() {
         // Se debe poner "Customer", asi como se llama la clase
@@ -28,10 +25,32 @@ public class CustomerDaoImplement implements ICustomerDao {
     }
 
     @Override
-    @Transactional
     public void save(Customer customer) {
-        // Toma el objeto Customer y lo guarda en la tabla
-        em.persist(customer);
+
+        //Si el cliente ya tiene id entonces lo edita
+        if (customer.getId() != null && customer.getId() > 0) {
+            // Toma el objeto Customer y lo actualiza en la bd
+            em.merge(customer);
+        }else{
+            // Toma el objeto Customer y lo guarda en la bd
+            em.persist(customer);
+        }
+
+    }
+
+    @Override
+    public Customer find(Long id) {
+        return em.find(Customer.class, id);
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        //Busca al Cliente
+        Customer customer = find(id);
+
+        //Elimina al cliente
+        em.remove(customer);
     }
 
 }

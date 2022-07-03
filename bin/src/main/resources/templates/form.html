@@ -90,8 +90,6 @@
                 <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="form-text text-danger"></small>
             </div>
 
-            <input type="hidden" th:field="*{id}">
-
             <button type="submit" class="btn btn-primary" th:text="${txtButton}"></button>
         </form>
         

@@ -12,6 +12,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 /**
@@ -34,10 +36,15 @@ public class Customer implements Serializable {
      * @Column(name = "nombredistinto")
      */
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     @Column(name = "last_name")
     private String lastName;
+
+    @NotEmpty
+    @Email
     private String email;
 
     // Timestamps
