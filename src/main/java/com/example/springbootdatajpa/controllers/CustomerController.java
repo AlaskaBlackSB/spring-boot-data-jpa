@@ -23,7 +23,7 @@ public class CustomerController {
     public String all(Model model) {
 
         model.addAttribute("title", "Customers list");
-        model.addAttribute("customers", customerService.all());
+        model.addAttribute("customers", customerService.findAll());
 
         return "all";
     }
@@ -68,7 +68,7 @@ public class CustomerController {
             return "redirect:/all";
         }
 
-        customer = customerService.find(id);
+        customer = customerService.findById(id);
 
         // Comprueba que el cliente exista
         if (customer == null) {
@@ -90,7 +90,7 @@ public class CustomerController {
             return "redirect:/all";
         }
 
-        Customer customer = customerService.find(id);
+        Customer customer = customerService.findById(id);
 
         // Comprueba que el cliente exista
         if (customer == null) {
@@ -98,7 +98,7 @@ public class CustomerController {
         }
 
         //Elimina el cliente
-        customerService.delete(id);
+        customerService.deleteById(id);
 
         return "redirect:/all";
     }

@@ -1,17 +1,11 @@
 package com.example.springbootdatajpa.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 import com.example.springbootdatajpa.models.entity.Customer;
 
-public interface ICustomerDao {
-
-    public List<Customer> all();
-
-    public void save(Customer customer);
-
-    public Customer find(Long id);
-
-    public void delete(Long id);
+// No se anota con repository o com-ponent porque ya es un componente de 
+// Spring porque ya se hereda de CrudRepository
+public interface ICustomerDao extends CrudRepository<Customer, Long> {
 
 }

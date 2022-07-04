@@ -91,6 +91,8 @@
             </div>
 
             <input type="hidden" th:field="*{id}">
+            <!-- <input type="hidden" th:if="${customer.createdAt != null}" th:field="*{createdAt}"> -->
+            
 
             <button type="submit" class="btn btn-primary" th:text="${txtButton}"></button>
         </form>

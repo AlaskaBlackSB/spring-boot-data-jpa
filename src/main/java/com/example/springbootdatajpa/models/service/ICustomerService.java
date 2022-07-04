@@ -6,12 +6,12 @@ import com.example.springbootdatajpa.models.entity.Customer;
 
 public interface ICustomerService {
     
-    public List<Customer> all();
+    public List<Customer> findAll();
 
     public void save(Customer customer);
 
-    public Customer find(Long id);
+    public Customer findById(Long id);
 
-    public void delete(Long id);
+    public void deleteById(Long id);
 
 }
