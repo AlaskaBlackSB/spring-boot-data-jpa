@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="layout/layout :: head"> </head>
+<body>
+
+    <header th:replace="layout/layout :: header"></header>
+
+    <div class="container">
+
+        <div class="card bg-light mt-3">
+            
+            <div class="card-header" th:text="${title}"></div>
+            <div class="card-body">
+                <h4><a th:href="@{/form}" class="btn btn-primary btn-xs">Create Customer</a></h4>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="customer : ${customers}">
+                            <td scope="row"><a class="btn btn-primary btn-xs" th:text="${customer.id}" th:href="@{/show/} + ${customer.id}"></a></td>
+                            <td th:text="${customer.name}"></td>
+                            <td th:text="${customer.lastName}"></td>
+                            <td th:text="${customer.email}"></td>
+                            <td th:text="${customer.createdAt}"></td>
+                            <td><a class="btn btn-warning btn-xs" th:href="@{/form/} + ${customer.id}" th:text="'Edit'"></a></td>
+                            <td><a class="btn btn-danger btn-xs" th:href="@{/delete/} + ${customer.id}" th:text="'Delete'" onclick="return confirm('Estás seguro de eliminar?')"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-center">
+
+                    <nav th:replace="paginator_nav :: paginator"></nav>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <footer th:replace="layout/layout :: footer"></footer>
+    
+</body>
+</html>
