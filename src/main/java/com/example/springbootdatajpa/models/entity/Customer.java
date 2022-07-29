@@ -48,10 +48,12 @@ public class Customer implements Serializable {
     private String email;
 
     // Timestamps
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     // Define el formato en como se guardará en la base
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    private String photo;
 
     private static final long serialVersionUID = 1L;
 
@@ -129,6 +131,20 @@ public class Customer implements Serializable {
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+    
+    /**
+     * @return String return the photo
+     */
+    public String getPhoto() {
+        return photo;
+    }
+
+    /**
+     * @param photo the photo to set
+     */
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
 }
